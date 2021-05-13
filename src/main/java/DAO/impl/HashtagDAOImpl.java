@@ -3,6 +3,7 @@ package DAO.impl;
 import DAO.HashtagDAO;
 import domainobject.Hashtag;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -10,16 +11,31 @@ import java.util.Optional;
 public class HashtagDAOImpl implements HashtagDAO {
 
 
-    HashMap<Hashtag, Integer> topHashtags;
+    private HashMap<Hashtag, Integer> hashtagsFreq;
+
+    private List<Hashtag> topHashtags;
+
+    public HashtagDAOImpl(){
+        hashtagsFreq = new HashMap<>();
+        topHashtags = new ArrayList<>();
+    }
 
 
+    public List<Hashtag> getTopKHashtags(Integer k){
+        return topHashtags.subList(0, Math.min(topHashtags.size(),k));
+    }
 
 
-    //Extended from CRUD - not implemented for now
     @Override
     public <S extends Hashtag> S save(S s) {
-        return null;
+        hashtagsFreq.put(s, hashtagsFreq.getOrDefault(s, 0) + 1);
+
+        // TODO: update sorted list of topHashtags as needed after inserting the new hashtag
+
+        return s;
     }
+
+    //Extended from CRUD - not implemented for now
 
     @Override
     public <S extends Hashtag> Iterable<S> saveAll(Iterable<S> iterable) {

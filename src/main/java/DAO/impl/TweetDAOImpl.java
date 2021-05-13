@@ -5,7 +5,6 @@ import domainobject.User;
 import main.java.domainobject.Tweet;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +18,8 @@ public class TweetDAOImpl implements TweetDAO {
 
     @Override
     public List<Tweet> fetchTweetsByUserId(String userId) {
-        List<Tweet> tweets = new ArrayList<Tweet>();
-        //TODO: fetch the tweets
-        return tweets;
+        User user = manager.find(User.class, userId);
+        return user.getTweets();
     }
 
     @Override
@@ -31,12 +29,15 @@ public class TweetDAOImpl implements TweetDAO {
         List<User> validators = tweet.getTweetValidators();
         User newValidator = manager.find(User.class, userId);
         validators.add(newValidator);
+
     }
 
+
     //Extended from CRUD - not implemented for now
+
     @Override
     public <S extends Tweet> S save(S s) {
-        return null;
+       return null;
     }
 
     @Override

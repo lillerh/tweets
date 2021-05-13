@@ -31,19 +31,14 @@ public class Tweet {
     @ManyToMany(mappedBy = "tweets")
     private List<User> tweetValidators;
 
-
-    //TODO: Don't know if necessary
     @Enumerated(EnumType.STRING)
     private Language language;
 
-    private Tweet(){
-
-    }
-
-    public Tweet(User user, String text, String location){
+    public Tweet(User user, String text, String location, Language language){
         this.user = user;
         this.text = text;
         this.location = location;
+        this.language = language;
     }
 
     public String getId()
@@ -96,4 +91,10 @@ public class Tweet {
     public void setLanguage(Language language) {
         this.language = language;
     }
+
+    public Boolean isValidated(){
+        return tweetValidators!=null && tweetValidators.size() > 0;
+    }
+
+
 }

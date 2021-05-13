@@ -5,6 +5,8 @@ import domainobject.User;
 import main.java.domainobject.Tweet;
 import org.springframework.stereotype.Repository;
 
+import main.java.domainvalue.Language;
+
 import java.util.List;
 
 @Repository
@@ -16,6 +18,8 @@ public interface TweetRepository {
 
     List<Tweet> getValidatedTweetsByUser(String userId);
 
-    List<Hashtag> fetchMoreUsedHashtags(Long count);
+    List<Hashtag> getTopKHashtags(Integer k);
+
+    Boolean createTweet(User user, Tweet tweet, Long minFollowersNum, List<Language> allowedLanguages);
 
 }

@@ -13,7 +13,7 @@ public class TweetMapper {
 
     public static Tweet makeTweet(TweetDTO tweetDTO)
     {
-        return new Tweet(UserMapper.makeUser(tweetDTO.getUser()), tweetDTO.getText(), tweetDTO.getLocation());
+        return new Tweet(UserMapper.makeUser(tweetDTO.getUser()), tweetDTO.getText(), tweetDTO.getLocation(), tweetDTO.getLanguage());
     }
 
 

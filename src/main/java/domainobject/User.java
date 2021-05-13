@@ -34,9 +34,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private List<Tweet> validatedTweets;
 
-    public User() {
-    }
-
     public User(String username) {
         this.username = username;
         this.followers = new ArrayList<>();

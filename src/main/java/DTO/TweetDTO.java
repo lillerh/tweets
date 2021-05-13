@@ -41,6 +41,10 @@ public class TweetDTO {
         return location;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
     public List<UserDTO> getTweetValidators() {
         return tweetValidators;
     }

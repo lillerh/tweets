@@ -49,7 +49,7 @@ public class TweetController {
     }
 
     @GetMapping
-    public List<String> getMostUsedHashtags(@RequestParam Integer numberOfHashtagsToReturn){
-        return tweetService.getMostUsedHashtags(numberOfHashtagsToReturn);
+    public List<String> getTopKHashtags(@RequestParam Integer k){
+        return tweetService.getTopKHashtags(k);
     }
 }
