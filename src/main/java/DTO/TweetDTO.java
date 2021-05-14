@@ -1,5 +1,6 @@
 package DTO;
 
+import domainobject.Hashtag;
 import main.java.domainvalue.Language;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public class TweetDTO {
     private List<UserDTO> tweetValidators;
 
     private Language language;
+
+    private List<Hashtag> hashtags;
 
     public TweetDTO() {
     }
@@ -43,6 +46,10 @@ public class TweetDTO {
 
     public Language getLanguage() {
         return language;
+    }
+
+    public List<Hashtag> getHashtags() {
+        return hashtags;
     }
 
     public List<UserDTO> getTweetValidators() {
@@ -86,7 +93,6 @@ public class TweetDTO {
             return this;
         }
 
-        //TODO; probably have to run throgh the list
         public TweetDTOBuilder setTweetValidators(List<UserDTO> tweetsValidators)
         {
             this.tweetValidators = tweetsValidators;

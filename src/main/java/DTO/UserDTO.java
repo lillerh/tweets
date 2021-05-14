@@ -59,7 +59,7 @@ public class UserDTO {
             return this;
         }
 
-        //TODO: run through lists
+        //TODO: run through list
         public UserDTOBuilder setFollowers(List<UserDTO> followers) {
             this.followers = followers;
             return this;

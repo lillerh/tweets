@@ -1,12 +1,10 @@
 package DAO;
 
 import domainobject.User;
-import main.java.domainobject.Tweet;
 import org.springframework.data.repository.CrudRepository;
+import main.java.domainobject.Tweet;
 
-import java.util.List;
+public interface UserDAO extends CrudRepository<Tweet, Long> {
 
-public interface UserDAO extends CrudRepository<User, Long> {
-
-    List<Tweet> getValidatedTweetsByUser(String userId);
+    User getUser(String userId);
 }

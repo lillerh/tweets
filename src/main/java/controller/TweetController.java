@@ -1,8 +1,9 @@
-package main.java.controller;
+package controller;
 
 import DTO.TweetDTO;
 import controller.mapper.TweetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import service.TweetService;
 
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("v1/tweets")
+@Component
 public class TweetController {
 
     private TweetService tweetService;
@@ -49,7 +51,7 @@ public class TweetController {
     }
 
     @GetMapping
-    public List<String> getTopKHashtags(@RequestParam Integer k){
-        return tweetService.getTopKHashtags(k);
+    public List<String> getTopNHashtags(){
+        return tweetService.getTopNHashtags();
     }
 }

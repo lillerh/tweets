@@ -1,12 +1,12 @@
 domainobject/User.class
+DAO/impl/InMemoryTweetDAOImpl.class
+DAO/impl/InMemoryHashtagDAOImpl.class
 DTO/UserDTO.class
 DTO/UserDTO$UserDTOBuilder.class
-DAO/impl/TweetDAOImpl.class
 DAO/UserDAO.class
+DAO/impl/InMemoryUserDAOImpl.class
 DTO/TweetDTO$TweetDTOBuilder.class
-main/java/controller/TweetController.class
 main/java/domainvalue/Language.class
-DAO/impl/HashtagDAOImpl.class
 controller/mapper/UserMapper.class
 DAO/HashtagDAO.class
 DAO/TweetDAO.class
@@ -15,6 +15,5 @@ domainobject/Hashtag.class
 service/TweetService.class
 controller/mapper/TweetMapper.class
 main/java/domainobject/Tweet.class
-DAO/impl/UserDAOImpl.class
 repositories/TweetRepository.class
 repositories/impl/TweetRepositoryImpl.class

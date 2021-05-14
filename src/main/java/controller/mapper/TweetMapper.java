@@ -1,8 +1,6 @@
 package controller.mapper;
 
 import DTO.TweetDTO;
-import DTO.UserDTO;
-import domainobject.User;
 import main.java.domainobject.Tweet;
 
 import java.util.Collection;
@@ -13,7 +11,7 @@ public class TweetMapper {
 
     public static Tweet makeTweet(TweetDTO tweetDTO)
     {
-        return new Tweet(UserMapper.makeUser(tweetDTO.getUser()), tweetDTO.getText(), tweetDTO.getLocation(), tweetDTO.getLanguage());
+        return new Tweet(tweetDTO.getUser().getId(), tweetDTO.getText(), tweetDTO.getLocation(), tweetDTO.getLanguage(), tweetDTO.getHashtags());
     }
 
 
@@ -24,6 +22,7 @@ public class TweetMapper {
                 .setText(tweet.getText())
                 .setLocation(tweet.getLocation());
 
+    /*            //TODO: to implement correctly (once there is a persistence layer)
         User user = tweet.getUser();
         if (user != null)
         {
@@ -36,6 +35,7 @@ public class TweetMapper {
             List<UserDTO> validatorsDTO = UserMapper.makeUsersDTOList(validators);
             tweetDTOBuilder.setTweetValidators(validatorsDTO);
         }
+        */
 
         return tweetDTOBuilder.createTweetDTO();
     }

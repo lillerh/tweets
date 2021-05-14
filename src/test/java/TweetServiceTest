@@ -1,0 +1,126 @@
+import DAO.HashtagDAO;
+import DAO.TweetDAO;
+import DAO.UserDAO;
+import domainobject.Hashtag;
+import main.java.domainvalue.Language;
+import org.junit.BeforeClass;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import repositories.TweetRepository;
+import repositories.impl.TweetRepositoryImpl;
+import service.TweetService;
+
+import main.java.domainobject.Tweet;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.mockito.Mockito.when;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/spring-main.xml"})
+public class TweetServiceTest {
+
+    /* MOCKS */
+    @Mock
+    private static TweetRepository tweetRepository;
+
+    @Mock
+    private static TweetDAO tweetDAO;
+
+    @Mock
+    private static HashtagDAO hashtagDAO;
+
+    @Mock
+    private static UserDAO userDAO;
+
+
+    @InjectMocks
+    private static TweetService tweetService;
+
+    private static Hashtag hashtag;
+    private static List<Hashtag> hashtags;
+    private static Tweet tweet;
+    private static List<Tweet> tweets;
+
+
+    /* CONSTANTS */
+    private static String userId = "lillerh";
+    private static String tweetId = "tweetId";
+    private static String text = "This is a test";
+    private static String location = "Spain";
+    private static String tag = "testing";
+
+
+    @BeforeClass
+    public static void init(){
+        tweetRepository = new TweetRepositoryImpl(tweetDAO, hashtagDAO, userDAO);
+
+        createHashtag();
+        createHashtags();
+        createTweet();
+        createTweets();
+
+    }
+
+
+    private static void createHashtag(){
+        hashtag = new Hashtag();
+        hashtag.setTag(tag);
+    }
+
+    private static void createHashtags(){
+        hashtags = new ArrayList<>();
+        hashtags.add(hashtag);
+    }
+
+    private static void createTweet(){
+        tweet = new Tweet(userId, text, location, Language.SPANISH, hashtags);
+        tweet.setId(tweetId);
+
+    }
+
+    private static void createTweets(){
+        tweets = new ArrayList<>();
+        tweets.add(tweet);
+    }
+
+
+    @Test
+    public static void getTweetsWhenValidUserReturnsTweets() {
+        when(tweetRepository.fetchTweetsForUser(userId)).thenReturn(tweets);
+
+        List<Tweet> result = tweetService.getTweets(userId);
+        assertEquals(tweets, result);
+    }
+
+    @Test
+    public static void getTweetsWhenInvalidUserThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            tweetService.getTweets(null);
+        });
+    }
+
+    //validateTweet
+
+    //getValidatedTweetsByUser
+
+    //getTopNHashtags
+
+    //createTweet
+
+
+
+    /**
+     *  Los autowired se transforman en @Mock en los tests
+     * Y el servicio que estás probando pongo @InjectMocks
+     *
+     * */
+}

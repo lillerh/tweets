@@ -23,8 +23,8 @@ public class UserMapper {
                 .setId(user.getId())
                 .setUsername(user.getUsername());
 
-
-                //TODO: recursivo?
+/*
+        //TODO: to implement correctly (once there is a persistence layer)
         List<User> followers = user.getFollowers();
         if (followers != null && !followers.isEmpty()){
             List<UserDTO> followersDTO = UserMapper.makeUsersDTOList(followers);
@@ -37,7 +37,7 @@ public class UserMapper {
             userDTOBuilder.setTweets(tweetsDTO);
         }
 
-
+*/
         return userDTOBuilder.createUserDTO();
     }
 

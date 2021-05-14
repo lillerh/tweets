@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface HashtagDAO extends CrudRepository<Hashtag, Long> {
 
-     List<Hashtag> getTopKHashtags(Integer k);
+     List<Hashtag> getTopNHashtags();
 
+    void updateHashtagsFreq(List<Hashtag> hashtags);
+
+    void refreshCachedHashtagsFreq(List<Hashtag> mostRecentTopNHashtags);
 
     }

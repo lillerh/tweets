@@ -7,8 +7,10 @@ import java.util.List;
 public interface TweetDAO extends CrudRepository<Tweet, Long> {
 
 
-    List<Tweet> fetchTweetsByUserId(String userId);
+    List<Tweet> fetchTweetsForUser(String userId);
 
     void validateTweet(String tweetId, String userId);
+
+    List<Tweet> getValidatedTweetsByUser(String userId);
 
 }
